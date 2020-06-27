@@ -71,34 +71,34 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col
-        md="10"
-        offset-md="1"
-        sm="12"
-      >
-        <Comment
-          :comments="comments"
-          :articleId="article.id"
-          :currentPage="commentPagination.current"
-          :totalPage="commentPagination.total"
-          v-on:addComment="addComment"
-          v-on:next="nextPageComment"
-          v-on:prev="prevPageComment"
-        />
-      </v-col>
-    </v-row>
+<!--    <v-row>-->
+<!--      <v-col-->
+<!--        md="10"-->
+<!--        offset-md="1"-->
+<!--        sm="12"-->
+<!--      >-->
+<!--        <Comment-->
+<!--          :comments="comments"-->
+<!--          :articleId="article.id"-->
+<!--          :currentPage="commentPagination.current"-->
+<!--          :totalPage="commentPagination.total"-->
+<!--          v-on:addComment="addComment"-->
+<!--          v-on:next="nextPageComment"-->
+<!--          v-on:prev="prevPageComment"-->
+<!--        />-->
+<!--      </v-col>-->
+<!--    </v-row>-->
   </div>
 </template>
 
 <script>
-  import Markdown from '@/components/Markdown'
+  import Markdown from '../components/Markdown'
   // import 'markdown-it-vue/dist/markdown-it-vue.css'
-  import Comment from '@/components/CommentPanel'
-  import {getArticle} from '@/api/article'
-  import {getArticleComment} from "@/api/comment";
+  import Comment from '../components/CommentPanel'
+  import {getArticle} from '../api/article'
+  import {getArticleComment} from "../api/comment";
   import allBgImages from 'randomBg'
-  import getPageTitle from "@/utils/get-page-title";
+  import getPageTitle from "../utils/get-page-title";
 
   export default {
     name: 'ArticleDetail',
@@ -114,7 +114,8 @@
         content: '',
         author: '',
         date: '',
-        url: ''
+        url: '',
+        title: ''
       },
       label: '',
       prev: -1,
@@ -148,20 +149,34 @@
       fetchData() {
         const id = this.$route.params && this.$route.params.id
         this.loading = true
-        getArticle(id).then(response => {
-          this.article = response.data.article
-          this.prev = response.data.prev
-          this.next = response.data.next
-          this.label = response.data.label.name
-          this.loading = false
-          this.$store.dispatch('setToolbar', this.article.title)
-          document.title = getPageTitle(this.article.title)
+        // getArticle(id).then(response => {
+        //   this.article = response.data.article
+        //   this.prev = response.data.prev
+        //   this.next = response.data.next
+        //   this.label = response.data.label.name
+        //   this.loading = false
+        //   this.$store.dispatch('setToolbar', this.article.title)
+        //   document.title = getPageTitle(this.article.title)
+        // })
+        getArticle(id).then(resp=>{
+          this.article = resp.data.articleInfo;
+          this.loading = false;
         })
-        getArticleComment({ articleId: id, page: 1, limit: 5}).then(resp => {
-          this.comments = resp.data.comments
-          this.commentPagination.current = resp.data.currePage
-          this.commentPagination.total = resp.data.totalPage
-        })
+
+        // let response = getArticle(id);
+        // this.article = response.article;
+        // this.prev = response.prev;
+        // this.next = response.next;
+        // this.label = response.label.name;
+        // this.loading = false;
+        // this.$store.dispatch('setToolbar', this.article.title);
+        // document.title = getPageTitle(this.article.title);
+
+        // getArticleComment({ articleId: id, page: 1, limit: 5}).then(resp => {
+        //   this.comments = resp.data.comments
+        //   this.commentPagination.current = resp.data.currePage
+        //   this.commentPagination.total = resp.data.totalPage
+        // })
       },
       addComment(comment) {
         this.comments.push(comment)

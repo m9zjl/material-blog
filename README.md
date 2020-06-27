@@ -4,7 +4,7 @@
 
 ## Demo
 
-[aagu的博客](http://aagu/ltd)
+[aagu的博客](http://aagu.ltd)
 
 ## Screenshot
 

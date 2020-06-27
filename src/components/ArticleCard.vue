@@ -16,7 +16,8 @@
             <v-card-title
               :class="{ 'white--text': randomPic.color === 'white', 'grey--text text--darken-4': randomPic.color === 'black' }"
               class="align-end fill-height headline"
-            >{{title}}</v-card-title>
+            >{{title}}
+            </v-card-title>
           </router-link>
         </v-img>
 
@@ -51,7 +52,7 @@
 
 <script>
   import allBgImages from 'randomBg'
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
 
   export default {
     name: 'ArticleCard',
@@ -79,6 +80,11 @@
 </script>
 
 <style>
-  a{text-decoration: none}
-  a:hover{text-decoration: none}
+  a {
+    text-decoration: none
+  }
+
+  a:hover {
+    text-decoration: none
+  }
 </style>

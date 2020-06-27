@@ -4,7 +4,7 @@
     dark
     color="primary"
     hide-on-scroll
-    elevation="0"
+    elevation="1"
   >
     <v-app-bar-nav-icon
       @click.stop="toggleDrawer"
@@ -20,8 +20,8 @@
 </template>
 
 <script>
-  import SearchBox from '@/components/Search'
-  import ThemeOp from "@/mixins/ThemeOp";
+  import SearchBox from '../components/Search'
+  import ThemeOp from "../mixins/ThemeOp";
 
   export default {
     name: 'Toolbar',

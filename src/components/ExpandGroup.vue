@@ -35,7 +35,7 @@
 
   export default {
     name: 'ExpandGroup',
-    components: { ExpandItem },
+    components: {ExpandItem},
     inheritAttrs: false,
     props: {
       item: {
@@ -48,10 +48,10 @@
       },
     },
     computed: {
-      children () {
+      children() {
         return this.item.children.map(item => ({
           text: item.text,
-          to: `?${this.item.group}=${item.to}`,
+          to: `?${this.item.group}=${this.item.group} + '/' + ${item.to}`,
         }))
       },
     },
@@ -64,7 +64,7 @@
 </script>
 
 <style>
-.v-list-group__activator p {
-  margin-bottom: 0;
-}
+  .v-list-group__activator p {
+    margin-bottom: 0;
+  }
 </style>

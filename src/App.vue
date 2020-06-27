@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import {getTheme} from "@/utils/helper";
+  import {getTheme} from "./utils/helper";
 
   export default {
   name: 'App',

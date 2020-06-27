@@ -5,7 +5,7 @@
         <v-col
           md="4"
         >
-          <GreetingCard />
+          <GreetingCard/>
         </v-col>
         <v-col
           md="4"
@@ -20,15 +20,17 @@
           ></v-date-picker>
         </v-col>
       </v-row>
+
       <div>
         <div v-for="article in articles" :key="article.date">
           <ArticleCard
-          :title=article.title
-          :content=article.content
-          :author=article.author
-          :date=article.date
-          :url=article.url
-          :label=label(article.labelId) />
+            :title=article.title
+            :content=article.content
+            :author=article.author
+            :date=article.date
+            :url=article.url
+            :label=label(article.labelId)>
+          </ArticleCard>
         </div>
       </div>
     </div>
@@ -38,7 +40,10 @@
         cols="2"
       >
         <div v-if="prePage > 0" class="text-center">
-          <v-btn fab small text @click="goPrePage"><v-icon>arrow_back</v-icon></v-btn><div class="d-none d-sm-block">上一页</div>
+          <v-btn fab small text @click="goPrePage">
+            <v-icon>arrow_back</v-icon>
+          </v-btn>
+          <div class="d-none d-sm-block">上一页</div>
         </div>
       </v-col>
       <v-col
@@ -50,7 +55,10 @@
         cols="2"
       >
         <div v-if="nextPage > 0 && nextPage <= pages" class="text-center">
-          <v-btn fab small text @click="goNextPage"><v-icon>arrow_forward</v-icon></v-btn><div class="d-none d-sm-block">下一页</div>
+          <v-btn fab small text @click="goNextPage">
+            <v-icon>arrow_forward</v-icon>
+          </v-btn>
+          <div class="d-none d-sm-block">下一页</div>
         </div>
       </v-col>
     </v-row>
@@ -62,14 +70,14 @@
 </template>
 
 <script>
-  import GreetingCard from '@/components/GreetingCard'
-  import ArticleCard from '@/components/ArticleCard'
-  import {getArticle} from '@/api/home'
-  import {getLabelById} from '@/utils'
+  import GreetingCard from '../components/GreetingCard'
+  import ArticleCard from '../components/ArticleCard'
+  import {getArticle} from '../api/home'
+  import {getLabelById} from '../utils'
 
   export default {
     name: 'Home',
-    components: { GreetingCard, ArticleCard },
+    components: {GreetingCard, ArticleCard},
     data: () => ({
       articles: [],
       labels: [],
@@ -103,12 +111,12 @@
     },
     watch: {
       $route(to, from) {
-        if (to.name === 'home') {
+        if(to.name === 'home') {
           const query = this.$route.query
 
-          if (query.category) {
+          if(query.category) {
             this.query['label'] = query.category
-          } else if (query.archive) {
+          } else if(query.archive) {
             this.query['archive'] = query.archive
           }
 
@@ -119,20 +127,27 @@
     methods: {
       getPage() {
         this.loading = true
-        getArticle(this.query).then(response => {
-          this.articles = response.data.articles
-          this.page = response.data.currePage
-          this.pages = response.data.pages
-          this.labels = response.data.labels
-          if (this.query['label'] === null && this.query['archive'] === null) {
-            this.$store.dispatch('setLabelMap', this.labels)
-          }
-
-          this.loading = false
-
-          // clear query
-          this.query['label'] = null
-          this.query['archive'] = null
+        // getArticle(this.query).then(response => {
+        //   this.articles = response.data.articles
+        //   this.page = response.data.currePage
+        //   this.pages = response.data.pages
+        //   this.labels = response.data.labels
+        //   if(this.query['label'] === null && this.query['archive'] === null) {
+        //     this.$store.dispatch('setLabelMap', this.labels)
+        //   }
+        //
+        //   this.loading = false
+        //
+        //   // clear query
+        //   this.query['label'] = null
+        //   this.query['archive'] = null
+        // })
+        // let response = getArticle(this.query);
+        // this.articles = response.articles;
+        // this.loading = false
+        getArticle(this.query).then(resp => {
+          this.articles = resp.data.articles;
+          this.loading = false;
         })
       },
       goNextPage() {

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import md5 from 'js-md5'
-import {getInfo, getUser, login, logout} from '@/api/user'
-import {getToken, removeToken, setToken} from '@/utils/auth'
+import {getInfo, getUser, login, logout} from './api/user'
+import {getToken, removeToken, setToken} from './utils/auth'
 
 Vue.use(Vuex)
 

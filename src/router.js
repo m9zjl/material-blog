@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import BlogLayout from '@/layout/index'
-import AdminLayout from '@/layout-admin/index'
+import Layout from './layout/index'
+import AdminLayout from './layout-admin/index'
 
 Vue.use(Router)
 
@@ -10,7 +10,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: BlogLayout,
+      component: Layout,
       redirect: 'home',
       children: [
         {
@@ -19,15 +19,15 @@ export default new Router({
           meta: {
             title: 'about'
           },
-          component: () => import('@/views/About')
+          component: () => import('./views/About')
         },
         {
           path: '/',
           name: 'home',
           meta: {
-            title: 'aagu\'s blog'
+            title: 'ben\'s blog'
           },
-          component: () => import('@/views/Home')
+          component: () => import('./views/Home')
         },
         {
           path: '/detail/:id(\\d+)',
@@ -35,16 +35,16 @@ export default new Router({
           meta: {
             title: '文章详情'
           },
-          component: () => import('@/views/Detail')
+          component: () => import('./views/Detail')
         },
-        {
-          path: '/404',
-          name: '404',
-          meta: {
-            title: '找不到页面'
-          },
-          component: () => import('@/views/NotFound')
-        },
+        // {
+        //   path: '/404',
+        //   name: '404',
+        //   meta: {
+        //     title: '找不到页面'
+        //   },
+        //   component: () => import('./views/NotFound')
+        // },
       ]
     },
     {

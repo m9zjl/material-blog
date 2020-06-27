@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
-    <Drawer />
+    <Drawer/>
 
-    <Toolbar />
+    <Toolbar/>
 
     <v-content
       class="base"
@@ -10,22 +10,22 @@
       <v-container
         fluid
       >
-        <router-view></router-view>
+        <router-view/>
       </v-container>
     </v-content>
 
-    <BackToTop :visibilityHeight="100" />
+    <BackToTop :visibilityHeight="100"/>
   </v-app>
 </template>
 
 <script>
   import Drawer from './Drawer'
-  import BackToTop from '@/components/BackToTop'
-  import Toolbar from './Toolbar'
+  import BackToTop from '../components/BackToTop'
+  import Toolbar from "./Toolbar";
 
   export default {
     name: 'Layout',
-    components: { Drawer, BackToTop, Toolbar },
+    components: {Toolbar, Drawer, BackToTop},
     data: () => ({
       drawer: true,
     }),
